@@ -1,0 +1,22 @@
+{
+  "name": "capacitacaocypress",
+  "version": "1.0.0",
+  "description": "Treinamento Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DayaneFreitas/CapacitacaoCypress.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DayaneFreitas/CapacitacaoCypress/issues"
+  },
+  "homepage": "https://github.com/DayaneFreitas/CapacitacaoCypress#readme",
+  "dependencies": {
+    "cypress": "^14.0.0"
+  }
+}
