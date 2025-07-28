@@ -1,9 +1,13 @@
+//import { before } from 'mocha'
 import Login from '../support/Pages/Login'
 import Produtos from '../support/Pages/Produtos'
-describe('Realizar Login',() =>{
 
+describe('Realizar Login',() =>{
+    beforeEach(()=>{
+          Login.acessarURL()
+    })
+     
     it("Realizar Login com sucesso",() => {
-         Login.acessarURL()
          Login.preenherUsername('standard_user')
          Login.preencherPassword('secret_sauce')
          Login.clicarEmLogin()
@@ -11,15 +15,13 @@ describe('Realizar Login',() =>{
     })
 
     it("Realizar Login sem informar a senha",() => {
-         Login.acessarURL()
          Login.preenherUsername('standard_user')
          Login.clicarEmLogin()
          Login.validarMensagemDeErro('Epic sadface: Password is required')
          Login.validarComContains('Password is required')
     })
 
-    it.only("Realizar Login sem informar o usuario",() => {
-         Login.acessarURL()
+    it("Realizar Login sem informar o usuario",() => {
          Login.preencherPassword('secret_sauce')
          Login.clicarEmLogin()
          Login.validarMensagemDeErro('Epic sadface: Username is required')
