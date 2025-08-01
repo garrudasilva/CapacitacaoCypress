@@ -18,5 +18,8 @@
   "homepage": "https://github.com/DayaneFreitas/CapacitacaoCypress#readme",
   "dependencies": {
     "cypress": "^14.0.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^9.9.0"
   }
 }
