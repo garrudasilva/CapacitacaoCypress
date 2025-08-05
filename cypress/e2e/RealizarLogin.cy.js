@@ -18,14 +18,15 @@ describe('Realizar Login', function(){
     })
 
     beforeEach(function(){
-          Login.acessarURL('/')
+          Login.acessarURL('https://www.saucedemo.com/v1/')
           cy.url().should('include', 'saucedemo')
     })
      
-    it("Realizar Login com sucesso", function(){
-         Login.preenherUsername(this.credenciaisExt.users.standard)
-         Login.preencherPassword(this.credenciaisExt.passwords.password_valido)
-         Login.clicarEmLogin()
+    it.only("Realizar Login com sucesso", function(){
+     //     Login.preenherUsername(this.credenciaisExt.users.standard)
+     //     Login.preencherPassword(this.credenciaisExt.passwords.password_valido)
+     //     Login.clicarEmLogin()
+         cy.realizarLogin(this.credenciaisExt.users.standard, this.credenciaisExt.passwords.password_valido)
          Produtos.validarLabelProdutos()
     })
 
@@ -45,18 +46,30 @@ describe('Realizar Login', function(){
 
     const destinatarioFaker = criarDestinatario()
 
-    it.only("Realizar compra com sucesso", function(){
+    it("Realizar compra com sucesso", function(){
          Login.preenherUsername(this.credenciaisExt.users.standard)
          Login.preencherPassword(this.credenciaisExt.passwords.password_valido)
          Login.clicarEmLogin()
          Produtos.validarLabelProdutos()
-         cy.get('button[class="btn_primary btn_inventory"]').first().click()
+         //cy.get('button[class="btn_primary btn_inventory"]').first().click()
+
+         let elIndex = Cypress._.random(0, 5)
+         cy.log(`Número: ${elIndex}`)
+
+         cy.get('button[class="btn_primary btn_inventory"]').eq(elIndex)
+     
+     //     cy.get('button[class="btn_primary btn_inventory"]').each(($btn, $index)=>{
+     //           if($index === elIndex){
+     //                cy.wrap($btn).click()
+     //           }
+     //     })
          // clicando no carrinho
          cy.get('a[class="shopping_cart_link fa-layers fa-fw"]').click()
+         cy.validarCSS('div[class="subheader"]', 'color', 'rgb(255, 255, 255)')
+         cy.validarCSS('a[class="btn_action checkout_button"]', 'background-color', 'rgb(226, 35, 26)')
          cy.get('a[class="btn_action checkout_button"]').click()
-         cy.get('#first-name').type(destinatarioFaker.firstName)
-         cy.get('#last-name').type(destinatarioFaker.lastName)
-         cy.get('#postal-code').type(destinatarioFaker.zipCode)
+
+         cy.informarDestinatario(destinatarioFaker.firstName, destinatarioFaker.lastName, destinatarioFaker.zipCode)
          cy.get('input[class="btn_primary cart_button"]').click()
          cy.get('a[class="btn_action cart_button"]').click()
          cy.get('h2[class="complete-header"]').should('have.text', 'THANK YOU FOR YOUR ORDER')
