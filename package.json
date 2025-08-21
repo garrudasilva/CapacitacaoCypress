@@ -4,22 +4,25 @@
   "description": "Treinamento Cypress",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:run": "npx cypress run --browser=chrome --headed --spec cypress/e2e/Fluxos.cy.js --reporter mocha-allure-reporter",
+    "report:allure":"allure generate allure-results --clean -o allure-report && allure open  allure-report"
+
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DayaneFreitas/CapacitacaoCypress.git"
+    "url": "git+https://github.com/garrudasilva/CapacitacaoCypress.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DayaneFreitas/CapacitacaoCypress/issues"
+    "url": "https://github.com/garrudasilva/CapacitacaoCypress/issues"
   },
-  "homepage": "https://github.com/DayaneFreitas/CapacitacaoCypress#readme",
-  "dependencies": {
-    "cypress": "^14.0.0"
-  },
+  "homepage": "https://github.com/garrudasilva/CapacitacaoCypress#readme",
   "devDependencies": {
-    "@faker-js/faker": "^9.9.0"
+    "@faker-js/faker": "^9.9.0",
+    "allure-commandline": "^2.34.1",
+    "cypress": "^14.0.0",
+    "mocha-allure-reporter": "^1.4.0"
   }
 }

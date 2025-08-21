@@ -1,29 +1,45 @@
 const el = require('./elements').ELEMENTS
 class Login {
 
-    acessarURL(url){
-        cy.visit(url)
-        cy.get(el.imgSwagLabs).should('be.visible')
+    acessarURL() {
+        cy.visit(el.url)
     }
 
-    preenherUsername(username){
+    preencherUsername(username) {
         cy.get(el.campoUsername).type(username)
     }
 
-    preencherPassword(password){
+    preencherPassword(password) {
         cy.get(el.campoPassword).type(password)
     }
 
-    clicarEmLogin(){
+    clicarEmLogin() {
         cy.get(el.botaoLogin).click()
     }
 
-    validarMensagemDeErro(erro){
-        cy.get(el.msgErro).should('have.text',erro)
+    validarComContains(erro) {
+        cy.contains(erro).should('be.visible')
     }
 
-    validarComContains(erro){
-        cy.contains(erro).should('be.visible')
+    validarPaginaLogin() {
+        cy.get(el.textoPaginaLogin).should('have.text', 'Login to your account')
+    }
+
+    preencherName(name) {
+        cy.get(el.campoName).type(name)
+    }
+
+    preencherEmail(email) {
+        cy.get(el.campoEmail).type(email)
+    }
+
+    clicarEmSignUp() {
+        cy.get(el.botaoSignUp).click()
+    }
+
+    validarMensagemUsuarioJaCadastrado() {
+        cy.get(el.mensagemUsuarioJaCadastrado)
+           .should('contain.text', 'Email Address already exist!')
     }
 
 }

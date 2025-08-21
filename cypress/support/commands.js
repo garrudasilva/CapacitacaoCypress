@@ -26,7 +26,7 @@ Cypress.Commands.add('informarDestinatario', (firstName, lastName, zipCode)=>{
     cy.get('#postal-code').type(zipCode)
 })
 
-Cypress.Commands.overwrite('visit', (url, urlValidate)=>{
+/*Cypress.Commands.overwrite('visit', (url, urlValidate)=>{
     cy.visit(url)
     cy.url().should('include', urlValidate)
-})
+})*/
